@@ -1,15 +1,17 @@
 import React from "react";
 import EmployeeList from "./EmployeeList";
-// import { datalist } from "./List";
+import { datalist } from "./List";
 import ShowDetails from "./ShowDetails";
 
 class EmployeeDetail extends React.Component {
-  state = { lists: null };
+  state = { lists: null, data: [] };
   onVideoSelect = video => {
-    this.setState({ lists: video });
+    this.setState({ data: video });
+    console.log("from the app", video);
   };
+
   render() {
-    const renderedlist = this.props.datalist.map((listed, index) => {
+    const renderedlist = datalist.map((listed, index) => {
       return (
         <div>
           <EmployeeList
@@ -19,11 +21,20 @@ class EmployeeDetail extends React.Component {
           />
         </div>
       );
+      // this.setState({ data: listed });
     });
     return (
-      <div>
-        <div className="ui relaxed divided list">{renderedlist}</div>
-        {/* <ShowDetails listed={listed} />{" "} */}
+      <div className="ui container" style={{ paddingTop: "15px" }}>
+        <div className="ui grid">
+          <div className="ui row">
+            <div className="six wide column">
+              <div className="ui relaxed divided list">{renderedlist}</div>
+            </div>
+            <div className="six wide column">
+              <ShowDetails data={this.state.data} />
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

@@ -1,25 +1,25 @@
 import React from "react";
 
-const ShowDetails = ({ listed }) => {
-  if (!listed) {
+const ShowDetails = ({ data }) => {
+  if (!data) {
     return <div>Loading...</div>;
-  }
-
-  const listSrc = { listed };
-
-  return (
-    <div className="ui segment">
-      {/* <div className="ui embed">
-        <iframe title="video player" src={videoSrc} />
-      </div> */}
-      <div className="ui segment">
-        <h4 className="ui header"> {listed.name} </h4>
+  } else {
+    return (
+      <div className="ui container">
         <div className="ui segment">
-          <p> {listed.Address} </p>
+          <div className="ui segment">
+            <h4 className="ui header"> Employee Name : {data.name} </h4>
+            <div className="ui segment">
+              <p> Employee Rank : {data.Rank} </p>
+              <p> Employee Address : {data.Address} </p>
+              <p> Employee Status : {data.status} </p>
+              <p> Employee Number : {data.phone_number} </p>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 };
 
 export default ShowDetails;
